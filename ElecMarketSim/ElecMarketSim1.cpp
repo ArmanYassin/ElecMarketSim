@@ -23,6 +23,29 @@ int main() {
     double mean = MonteCarlo::MonteCarloSimulation::computeMean(results);
 
     std::cout << "Simulation mean: " << mean << std::endl;
+        int n;
+    std::cout << "Enter the number of elements: ";
+    std::cin >> n;
+
+    if (n <= 0) {
+        std::cout << "Invalid input. Number of elements must be positive.\n";
+        return 1;
+    }
+
+    std::vector<int> data(n);
+    std::cout << "Enter " << n << " integers:\n";
+    for (int i = 0; i < n; ++i) {
+        std::cin >> data[i];
+    }
+
+    // Count the frequency of each number
+    std::map<int, int> frequency;
+    for (int num : data) {
+        ++frequency[num];
+    }
+
+    // Print the histogram
+    MonteCarlo::RandomGenerator printHistogram(frequency);
 
     return 0;
 }

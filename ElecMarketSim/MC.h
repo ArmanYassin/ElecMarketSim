@@ -5,6 +5,10 @@
 #include <functional>
 #include <random>
 #include <stdexcept>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <iomanip>
 
 namespace MonteCarlo {
 
@@ -26,6 +30,17 @@ namespace MonteCarlo {
             }
             std::uniform_real_distribution<double> dist(min, max);
             return dist(generator);
+        }
+
+        void printHistogram(const std::map<int, int>& frequency) {
+            std::cout << "\nHistogram:\n";
+            for (const auto& pair : frequency) {
+                std::cout << std::setw(3) << pair.first << " | ";
+                for (int i = 0; i < pair.second; ++i) {
+                    std::cout << '*';
+                }
+                std::cout << " (" << pair.second << ")\n";
+            }
         }
 
     private:
